@@ -23,7 +23,10 @@ public class MyContacts extends AppCompatActivity {
     int Perm_CTC;
     TextView result;
     Button details;
+    Button call;
     Uri uriContact;
+    String phone;
+    int CALL_Perm;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +34,7 @@ public class MyContacts extends AppCompatActivity {
         setContentView(R.layout.activity_my_contacts);
         result = (TextView) findViewById(R.id.textView10);
         details = (Button) findViewById(R.id.button7);
+        call = (Button) findViewById(R.id.button8);
     }
 
     @Override
@@ -80,17 +84,25 @@ public class MyContacts extends AppCompatActivity {
                         Cursor phones = getContentResolver().query(ContactsContract.CommonDataKinds.Phone.CONTENT_URI,null,ContactsContract.CommonDataKinds.Phone.CONTACT_ID +" = "+ id,null, null);
                         while (phones.moveToNext()) {
                             String phoneNumber = phones.getString(phones.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER));
+                            phone = phoneNumber;
                             result.setText("name: "+name+" / Number: "+phoneNumber);
+                            call.setEnabled(true);
                         }
                         phones.close();
                     }
-
-
-
                 }
             }
             cur.close();
-
         }
+    }
+
+    public void callNow(View view) {
+        ActivityCompat.requestPermissions(MyContacts.this, new String[]
+                {Manifest.permission.CALL_PHONE}, CALL_Perm);
+        Intent intent = new Intent(Intent.ACTION_CALL);
+        intent.setData(Uri.parse("tel:"+phone));
+        ActivityCompat.requestPermissions(MyContacts.this, new String[]
+                {Manifest.permission.CALL_PHONE}, CALL_Perm);
+        startActivity(intent);
     }
 }
