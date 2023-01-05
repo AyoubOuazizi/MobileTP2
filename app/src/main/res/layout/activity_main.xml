@@ -10,6 +10,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:gravity="center_horizontal"
         android:orientation="vertical"
         android:padding="20dp">
 
@@ -130,6 +131,14 @@
                 app:srcCompat="@android:drawable/ic_menu_slideshow" />
 
         </LinearLayout>
+
+        <Button
+            android:id="@+id/button9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="0"
+            android:onClick="partieTwo"
+            android:text="Partie 2" />
 
     </LinearLayout>
 

@@ -12,7 +12,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -107,6 +106,11 @@ public class MainActivity extends AppCompatActivity {
 
     public void persoActivity(View view) {
         Intent intent = new Intent(this, ActivitePerso.class);
+        startActivity(intent);
+    }
+
+    public void partieTwo(View view) {
+        Intent intent = new Intent(MainActivity.this, MyContacts.class);
         startActivity(intent);
     }
 }
